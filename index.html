@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE TV 71 - Premium Entertainment App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        /* Modern CSS Variables & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --bg-main: #06090e;
+            --bg-card: #0f141c;
+            --primary: #ff2a2a;
+            --secondary: #00ff66;
+            --text-white: #ffffff;
+            --text-gray: #a0aec0;
+            --glow: drop-shadow(0 0 15px rgba(255, 42, 42, 0.6));
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Glowing Header */
+        header {
+            background: rgba(6, 9, 14, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-box img {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 42, 42, 0.4);
+        }
+
+        .logo-box h1 {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dl-btn {
+            background: linear-gradient(135deg, var(--primary), #b30000);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 42, 42, 0.4);
+            transition: 0.3s ease;
+        }
+
+        .dl-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 42, 42, 0.7);
+        }
+
+        /* Ultimate Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 42, 42, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(0, 255, 102, 0.08) 0%, transparent 50%);
+        }
+
+        .hero-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h2 span {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        }
+
+        .hero-content p {
+            color: var(--text-gray);
+            font-size: 18px;
+            margin-bottom: 35px;
+            border-left: 3px solid var(--primary);
+            padding-left: 15px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #00ff66, #00993d);
+            color: #000;
+            font-weight: 700;
+            padding: 16px 35px;
+            border-radius: 12px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(0, 255, 102, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 255, 102, 0.6);
+        }
+
+        .btn-outline {
+            border: 2px solid rgba(255,255,255,0.1);
+            color: white;
+            font-weight: 600;
+            padding: 16px 35px;
+            border-radius: 12px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--primary);
+        }
+
+        /* Advanced App Interface Slider (Jabe/Ashbe System) */
+        .phone-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Floating Animation for the Phone mockup */
+        .phone-mockup {
+            width: 290px;
+            height: 590px;
+            background: #000;
+            border: 10px solid #1f2937;
+            border-radius: 40px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 30px rgba(255, 42, 42, 0.2);
+            overflow: hidden;
+            animation: floatBody 4s ease-in-out infinite;
+        }
+
+        @keyframes floatBody {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* The Notch */
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 25px;
+            background: #1f2937;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            z-index: 10;
+        }
+
+        /* Slider Wrapper */
+        .slider-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform: scale(0.95);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Features Section */
+        .features-sec {
+            padding: 100px 0;
+            background: #090d14;
+        }
+
+        .sec-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .sec-title h3 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .sec-title p {
+            color: var(--text-gray);
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 35px;
+            border-radius: 20px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: 0.4s;
+            transform-origin: left;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: #131924;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .card i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), #ff7676);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Static Multi-Screen Showroom (Bottom Gallery) */
+        .showroom {
+            padding: 100px 0;
+        }
+
+        .show-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .show-item {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+        }
+
+        .show-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .show-item:hover {
+            transform: scale(1.04) translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 25px rgba(0, 255, 102, 0.2);
+        }
+
+        /* Bottom Download Bar (Premium CTA) */
+        .cta-bar {
+            background: linear-gradient(135deg, #111722, #06090e);
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Footer & Credits */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            background: #04060a;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            font-size: 15px;
+            color: var(--text-gray);
+        }
+
+        .dev-credit {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .dev-credit span {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+        }
+
+        /* Responsive Setup */
+        @media(max-width: 992px) {
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                border-left: none;
+                padding-left: 0;
+            }
+            .action-btns {
+                justify-content: center;
+            }
+            .show-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo-box">
+                <img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/c5d228e4-ad6a-4cbb-8384-90f8465c7006.png" alt="Logo">
+                <h1>LIVE TV 71</h1>
+            </a>
+            <a href="LIVETV71.apk" download="LIVETV71.apk" class="dl-btn"><i class="fas fa-download"></i> ডাউনলোড</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-wrapper">
+            <div class="hero-content animate__animated animate__fadeInLeft">
+                <h2>লাইভ স্পোর্টস ও টোটাল এন্টারটেইনমেন্ট <span>একই অ্যাপে!</span></h2>
+                <p>সবচেয়ে ফাস্ট এবং আল্ট্রা HD স্ট্রিমিং সার্ভারে দেখুন দেশি-বিদেশি লাইভ টিভি, ক্রিকেট-ফুটবল ম্যাচ ডিটেইলস, লেটেস্ট মুভি বক্সের ট্র্যাকিং সহ এক্সক্লুসিভ সিরিজ ও অ্যানিমে। ডেভেলপ করেছেন Raim।</p>
+                <div class="action-btns">
+                    <a href="LIVETV71.apk" download="LIVETV71.apk" class="btn-premium"><i class="fab fa-android"></i> ডাউনলোড APK (ফ্রি)</a>
+                    <a href="#features" class="btn-outline"><i class="fas fa-layer-group"></i> ফিচারস দেখুন</a>
+                </div>
+            </div>
+            
+            <div class="phone-container animate__animated animate__fadeInRight">
+                <div class="phone-mockup">
+                    <div class="slider-wrapper">
+                        <div class="slide active">
+                            <img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/25c0f8f0-2f3e-4e2b-830d-d016227a21e6.jpg" alt="Screen 1">
+                        </div>
+                        <div class="slide">
+                            <img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/fb02185d-f3e9-418a-a526-d2e8ea14a35b.jpg" alt="Screen 2">
+                        </div>
+                        <div class="slide">
+                            <img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/7ade0806-990b-4a8d-9cdb-99ecf17c2376.jpg" alt="Screen 3">
+                        </div>
+                        <div class="slide">
+                            <img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/f1bbaa3d-a8fd-40a2-9854-a42199f0bbb4.jpg" alt="Screen 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-sec" id="features">
+        <div class="container">
+            <div class="sec-title">
+                <h3>কেন আমাদের অ্যাপটি সেরা?</h3>
+                <p>সবচেয়ে পাওয়ারফুল ফিচারস এবং ইউজার ফ্রেন্ডলি ইউজার ইন্টারফেস</p>
+            </div>
+            <div class="grid-features">
+                <div class="card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>লাইভ স্পোর্টস হাব</h4>
+                    <p>ফুটবল ম্যাচ ডিটেইলস সহ লাইভ ক্রিকেট এবং ফুটবল খেলার হাই-স্পিড লাইভ স্ট্রিমিং স্কোয়াড তথ্য সহ।</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-box-open"></i>
+                    <h4>প্রিমিয়াম মুভি বক্স</h4>
+                    <p>লেটেস্ট ট্রেন্ডিং মুভি, এক্সক্লুসিভ ওয়েব সিরিজ এবং এভারগ্রিন অ্যানিমে কালেকশন সরাসরি প্লে করার সুবিধা।</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-globe"></i>
+                    <h4>দেশি-বিদেশি লাইভ টিভি</h4>
+                    <p>১০০+ বাংলাদেশি এবং ইন্ডিয়ান প্রিমিয়াম টিভি চ্যানেল। সাথে থাকছে বিশেষ বিবিসি নিউজ (BBC News) লাইভ ফিড।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showroom">
+        <div class="container">
+            <div class="sec-title">
+                <h3>অ্যাপ গ্যালারি প্রিভিউ</h3>
+                <p>এক নজরে দেখে নিন অ্যাপটির ভেতরের প্রফেশনাল ডিজাইন</p>
+            </div>
+            <div class="show-grid">
+                <div class="show-item"><img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/25c0f8f0-2f3e-4e2b-830d-d016227a21e6.jpg" alt="UI 1"></div>
+                <div class="show-item"><img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/fb02185d-f3e9-418a-a526-d2e8ea14a35b.jpg" alt="UI 2"></div>
+                <div class="show-item"><img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/7ade0806-990b-4a8d-9cdb-99ecf17c2376.jpg" alt="UI 3"></div>
+                <div class="show-item"><img src="https://i.supaimg.com/6e0b602c-5350-4fe9-b4fc-46a57958ab96/f1bbaa3d-a8fd-40a2-9854-a42199f0bbb4.jpg" alt="UI 4"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-bar">
+        <div class="container">
+            <h3 style="font-size: 32px; margin-bottom: 20px;">বিনোদন হোক সীমাহীন!</h3>
+            <p style="color: var(--text-gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">অফিসিয়াল ও নিরাপদ এপিকে ফাইলটি সরাসরি আপনার ফোনে ইনস্টল করতে নিচের ডাউনলোড বাটনে চাপ দিন।</p>
+            <a href="LIVETV71.apk" download="LIVETV71.apk" class="btn-premium"><i class="fas fa-cloud-download-alt"></i> এখনই ডাউনলোড করুন</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 LIVE TV 71. All Rights Reserved.</p>
+            <div class="dev-credit">Developed by: <span>Developer Raim</span></div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            const slideInterval = 3000;
+
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+
+            setInterval(nextSlide, slideInterval);
+        });
+    </script>
+</body>
+</html>
